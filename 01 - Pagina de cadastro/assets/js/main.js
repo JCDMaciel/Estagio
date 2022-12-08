@@ -38,14 +38,14 @@ function criarLinhaDaTabela () {
     const botaoExcluir = document.createElement("input");
     novaLinha.appendChild(botaoExcluir);
     botaoExcluir.setAttribute("onclick", "removerUltimaLinhaDaTabela ();");
-    botaoExcluir.setAttribute("id", "apagar");
+    botaoExcluir.setAttribute("class", "apagar");
     botaoExcluir.setAttribute("value", "excluir");
     botaoExcluir.style.width = "2.5rem";
 
     const botaoEditar = document.createElement("input");
     novaLinha.appendChild(botaoEditar);
     botaoEditar.setAttribute("onclick", "editarUltimaLinhaDaTabela ();");
-    botaoEditar.setAttribute("id", "editar");
+    botaoEditar.setAttribute("class", "editar");
     botaoEditar.setAttribute("value", "editar");
     botaoEditar.style.width = "2.5rem";
 
@@ -60,10 +60,4 @@ function removerUltimaLinhaDaTabela () {
 
 function editarUltimaLinhaDaTabela () {
     removerUltimaLinhaDaTabela ();
- 
-    campoNome.value = document.getElementById('nome').value;
-    campoCpf.value = document.getElementById('cpf').value;
-    campoEmail.value = document.getElementById('email').value;
-    campoEndereco.value = document.getElementById('endereco').value;
-    campoNascimento.value = document.getElementById('nascimento').value;
 }
