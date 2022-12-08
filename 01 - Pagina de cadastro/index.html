@@ -2,7 +2,6 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
     <link rel="stylesheet" href="reset.css">
@@ -11,18 +10,19 @@
 <body>
     <h1 class="titulo">Formulário de cadastro</h1>
     <section class="container">
-        <div class="container-formulario">
-            <input type="text" placeholder="Nome" id="nome" class="container-formulario-item" required>
-            <input type="text" placeholder="CPF xxx.xxx.xxx-xx" id="cpf" class="container-formulario-item" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" required>
-            <input type="email" placeholder="E-mail" id="email" class="container-formulario-item" required>
-            <input type="text" placeholder="Endedeço" id="endereco" class="container-formulario-item" required>
-            <div class="container-aniversario">
-                <p class="container-titulo-aniversario">Data de nascimento</p><input type="date" id="nascimento" class="container-formulario-item container-formulario-aniversario" required>
-            </div>
-            <input type="tel" placeholder="xx-xxxxx-xxxx" id="primeiro_contato" class="container-formulario-item" pattern="[0-9]{2}-[0-9]?[0-9]{4}-[0-9]{4}" required>
-            <input type="tel" placeholder="xx-xxxxx-xxxx" id="segundo_contato" class="container-formulario-item" pattern="[0-9]{2}-[0-9]?[0-9]{4}-[0-9]{4}" required>
-            <input type="submit" value="Cadastrar" id="cadastrar" class="container-formulario-item">
-            <input type="submit" value="Apagar ultimo registro" id="apagar" class="container-formulario-item">
+        <div >
+            <form class="container-formulario">
+                <input type="text" placeholder="Nome" id="nome" class="container-formulario-item" required="required">
+                <input type="text" placeholder="CPF xxx.xxx.xxx-xx" id="cpf" class="container-formulario-item" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" required="required">
+                <input type="email" placeholder="E-mail" id="email" class="container-formulario-item" required="required">
+                <input type="text" placeholder="Endedeço" id="endereco" class="container-formulario-item" required="required">
+                <div class="container-aniversario">
+                    <p class="container-titulo-aniversario">Data de nascimento</p><input type="date" id="nascimento" class="container-formulario-item container-formulario-aniversario" required="required">
+                </div>
+                <input type="tel" placeholder="xx-xxxxx-xxxx" id="primeiro_contato" class="container-formulario-item" pattern="[0-9]{2}-[0-9]?[0-9]{4}-[0-9]{4}" required="required">
+                <input type="tel" placeholder="xx-xxxxx-xxxx" id="segundo_contato" class="container-formulario-item" pattern="[0-9]{2}-[0-9]?[0-9]{4}-[0-9]{4}" required="required">
+                <input type="submit" value="Cadastrar" id="cadastrar" class="container-formulario-item" onclick="criarLinhaDaTabela ();">
+            </form>
         </div>
     </section>
     <h2 class="titulo">Tabela de cadastros</h2>
@@ -34,8 +34,7 @@
                 <td class="tabela-item">Email</td>
                 <td class="tabela-item">Endereço</td>
                 <td class="tabela-item">Nascimento</td>
-                <td class="tabela-item">Contato</td>
-                <td class="tabela-item">Contato</td>
+                <td class="tabela-item">Ações</td>
             </tr>
         </tbody>
     </table>
