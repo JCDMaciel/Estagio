@@ -40,13 +40,31 @@ function validarCPF(inputCPF){
     return true;
 }
 
+function removerBotaoDaLinhaAnterior() {
+    const botaoApagarAntigo = document.getElementsByClassName('apagar');
+    const botaoEditarAntigo = document.getElementsByClassName('editar');
+
+    if (botaoApagarAntigo.length >= 2 && botaoEditarAntigo.length >= 2) {
+        const botaoApagarInvisivel = botaoApagarAntigo[botaoApagarAntigo.length -2];
+        botaoApagarInvisivel.setAttribute("hidden", "hidden");
+
+        const botaoRecado = botaoEditarAntigo[botaoEditarAntigo.length -2];
+        botaoRecado.removeAttribute("onclick");
+        botaoRecado.removeAttribute("class");
+        botaoRecado.setAttribute("value", "Salvo");
+        botaoRecado.style.width = "5.5rem";
+        botaoRecado.style.textAlign = "center";
+    }
+}
+
 function validaVariavelEmBranco (){
     if (campoNome == "" || campoCpf == "" || campoEmail == "" || campoEndereco == "" || campoNascimento == "" ) {
         alert("Favor preencher todos os campos do formulário");
     } else {
         if (validarCPF(campoCpf) == true) {   
-            criarLinhaDaTabela ()
-            limpaFormulario ()
+            criarLinhaDaTabela ();
+            removerBotaoDaLinhaAnterior();
+            limpaFormulario ();
         } else {
             alert("Favor preencher CPF corretamente");
         }
