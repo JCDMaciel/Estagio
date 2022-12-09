@@ -1,12 +1,69 @@
 const tabela = document.getElementById('tabela');
+const cadastrar = document.getElementById('cadastrar');
+
+let campoNome = "";
+let campoCpf = "";
+let campoEmail = "";
+let campoEndereco = "";
+let campoNascimento = "";
+let campoPrimeiroContato = "";
+let campoSegundoContato = "";
+
+function pegaValorDaVariavel () {
+    campoNome = document.getElementById('nome').value;
+    campoCpf = document.getElementById('cpf').value;
+    campoEmail = document.getElementById('email').value;
+    campoEndereco = document.getElementById('endereco').value;
+    campoNascimento = document.getElementById('nascimento').value;
+    campoPrimeiroContato = document.getElementById('primeiro_contato').value;
+    campoSegundoContato = document.getElementById('segundo_contato').value;
+}
+
+function validarCPF(inputCPF){
+    var soma = 0;
+    var resto;
+    var inputCPF = document.getElementById('cpf').value;
+
+    if(inputCPF == '00000000000') return false;
+    for(i=1; i<=9; i++) soma = soma + parseInt(inputCPF.substring(i-1, i)) * (11 - i);
+    resto = (soma * 10) % 11;
+
+    if((resto == 10) || (resto == 11)) resto = 0;
+    if(resto != parseInt(inputCPF.substring(9, 10))) return false;
+
+    soma = 0;
+    for(i = 1; i <= 10; i++) soma = soma + parseInt(inputCPF.substring(i-1, i))*(12-i);
+    resto = (soma * 10) % 11;
+
+    if((resto == 10) || (resto == 11)) resto = 0;
+    if(resto != parseInt(inputCPF.substring(10, 11))) return false;
+    return true;
+}
+
+function validaVariavelEmBranco (){
+    if (campoNome == "" || campoCpf == "" || campoEmail == "" || campoEndereco == "" || campoNascimento == "" ) {
+        alert("Favor preencher todos os campos do formulário");
+    } else {
+        if (validarCPF(campoCpf) == true) {   
+            criarLinhaDaTabela ()
+            limpaFormulario ()
+        } else {
+            alert("Favor preencher CPF corretamente");
+        }
+    } 
+}
+
+function limpaFormulario () {
+    document.getElementById('nome').value = "";
+    document.getElementById('cpf').value = "";
+    document.getElementById('email').value = "";
+    document.getElementById('endereco').value = "";
+    document.getElementById('nascimento').value = "";
+    document.getElementById('primeiro_contato').value = "";
+    document.getElementById('segundo_contato').value = "";
+}
 
 function criarLinhaDaTabela () {
-    const campoNome = document.getElementById('nome').value;
-    const campoCpf = document.getElementById('cpf').value;
-    const campoEmail = document.getElementById('email').value;
-    const campoEndereco = document.getElementById('endereco').value;
-    const campoNascimento = document.getElementById('nascimento').value;
-
     const novaLinha = document.createElement("tr");
     novaLinha.setAttribute("class", "linha");
 
@@ -60,4 +117,17 @@ function removerUltimaLinhaDaTabela () {
 
 function editarUltimaLinhaDaTabela () {
     removerUltimaLinhaDaTabela ();
+    document.getElementById('nome').value = campoNome; 
+    document.getElementById('cpf').value = campoCpf;
+    document.getElementById('email').value = campoEmail;
+    document.getElementById('endereco').value = campoEndereco; 
+    document.getElementById('nascimento').value = campoNascimento;
+    document.getElementById('primeiro_contato').value = campoPrimeiroContato;
+    document.getElementById('segundo_contato').value = campoSegundoContato;
 }
+
+cadastrar.addEventListener('click', (evento)=>{
+    evento.preventDefault();
+    pegaValorDaVariavel ();
+    validaVariavelEmBranco ();
+})
